@@ -17,8 +17,4 @@ def aplicaciones(request):
         'aplicaciones' : aplicaciones
     })
 
-def solicitar_usuario(request):
-    usuario = SolicitudUsuario(
-    )
-    return HttpResponse("Usuario Creado")
 

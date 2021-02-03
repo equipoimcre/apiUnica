@@ -23,7 +23,7 @@ import usuarios.views
 urlpatterns = [
     path('', api_usuarios.views.index, name='index'), # Pagina de inicio 
     path('usuarios/', usuarios.views.home, name = 'usuarios'),
-    path('usuarios/solicitar_usuario', usuarios.views.solicitar_usuario, name = 'solicitar_usuario'), 
+    path('usuarios/solicitar_usuario/', usuarios.views.solicitar_usuario, name = 'solicitar_usuario'), 
     path('aplicaciones/', usuarios.views.aplicaciones, name = 'aplicaciones'), 
     path('admin/', admin.site.urls), # con /admin nos abre la pagina de administracion
 ]
