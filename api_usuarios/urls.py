@@ -15,10 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from api_usuarios import views # carga las vista de la pagina web base
+import api_usuarios.views # carga las vista de la pagina web base
+import usuarios.views
+
+
 
 urlpatterns = [
-    path('', views.index, name='index'), # Pagina de inicio 
-    path('usuarios/', include("usuarios.urls")), # con /usuarios usuarios/urls
+    path('', api_usuarios.views.index, name='index'), # Pagina de inicio 
+    path('usuarios/', usuarios.views.home, name = 'usuarios'),
+    path('usuarios/solicitar_usuario', usuarios.views.solicitar_usuario, name = 'solicitar_usuario'), 
+    path('aplicaciones/', usuarios.views.aplicaciones, name = 'aplicaciones'), 
     path('admin/', admin.site.urls), # con /admin nos abre la pagina de administracion
 ]

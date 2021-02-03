@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Gestion de aplicaciones IM
+{% endblock %}
+
+    
+{% block contenido %}
+   
+<h1>Pagina de inicio Gestion de aplicaciones IM</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Aplicacion</th>
+            <th scope="col">Activa</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for aplicacion in aplicaciones%}
+            <tr>
+                <th scope="row">{{aplicacion.id}}</th>
+                <td>{{aplicacion.nombre}}</td>
+                <td>{{aplicacion.activa}}</td>
+            </tr>
+        {%endfor%}
+    </tbody>
+</table>
+{% endblock %}
