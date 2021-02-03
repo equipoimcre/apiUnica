@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from . import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'y-=c9(76xv#r4@&hgeb1xe4a5i1@7okbs+-_o6elj@h29*_qc6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config.DEBUG
 
 ALLOWED_HOSTS = []
 
@@ -75,8 +76,13 @@ WSGI_APPLICATION = 'api_usuarios.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+	'ENGINE': config.DB_ENGINE,
+	'NAME': config.DB_NAME,
+	'USER': config.DB_USER,
+	'PASSWORD': config.DB_PASSWORD,
+	'HOST': config.DB_HOST,
+	'PORT': config.DB_PORT,
+    'OPTIONS': { 'init_command' : 'SET storage_engine=INNODB,character_set_connection=utf8,collation_connection=utf8_unicode_ci' }
     }
 }
 
