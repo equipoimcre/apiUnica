@@ -5,7 +5,10 @@ from usuarios.models import SolicitudUsuario, Aplicacion, EstadoSolicitud, Usuar
 
 
 def home(request):
-    return render(request, 'home.html')
+    usuarios = SolicitudUsuario.objects.filter(estado_solicitud=1)
+    return render(request, 'home.html', {
+        'usuarios' : usuarios
+    })
 
 def aplicaciones(request):
 
@@ -16,6 +19,6 @@ def aplicaciones(request):
 
 def solicitar_usuario(request):
     usuario = SolicitudUsuario(
-
     )
     return HttpResponse("Usuario Creado")
+

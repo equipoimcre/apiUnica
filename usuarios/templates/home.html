@@ -8,4 +8,25 @@ Gestion de usuarios IM
     {% block contenido %}
    
     <h1>Pagina de inicio Gestion de usuarios IM</h1>
+    <h2> Usuarios pendientes </h2>
+    <table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Fecha solicitid</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for usuario in usuarios%}
+            <tr>
+                <th scope="row">{{usuario.id}}</th>
+                <td>{{usuario.nombre}} {{usuario.apellidos}}</td>
+                <td>{{usuario.correo}}</td>
+                <td>{{usuario.fecha_solcitud}}</td>
+            </tr>
+        {%endfor%}
+    </tbody>
+</table>
     {% endblock %}
