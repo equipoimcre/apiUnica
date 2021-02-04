@@ -21,7 +21,7 @@ Gestion de usuarios IM
     <tbody>
         {% for usuario in usuarios%}
             <tr>
-                <th scope="row">{{usuario.id}}</th>
+                <th scope="row"><a class="nav-link" href="{% url 'editar_usuario' usuario.id %}">{{usuario.id}}</a></th>
                 <td>{{usuario.nombre}} {{usuario.apellidos}}</td>
                 <td>{{usuario.correo}}</td>
                 <td>{{usuario.fecha_solcitud}}</td>

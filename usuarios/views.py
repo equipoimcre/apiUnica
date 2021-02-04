@@ -32,6 +32,16 @@ def solicitar_usuario(request):
             return redirect('/usuarios')
     return render(request, "solicitar_usuario.html", {'form': form})
 
+def editar_usuario(request, id):
+    instancia = SolicitudUsuario.objects.get(id=id)
+    form = SolicitarUsuarioForm(instance=instancia)
+    if request.method == "POST":
+        form = SolicitarUsuarioForm(request.POST or None, instance=instancia)
+        if form.is_valid():
+            instancia = form.save(commit=False)
+            instancia.save()
+            return redirect('/usuarios')
+    return render(request, "solicitar_usuario.html", {'form': form})
 
 def alta_aplicacion(request):
     form = AplicacionForm()
