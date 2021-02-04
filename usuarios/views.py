@@ -14,6 +14,12 @@ def home(request):
         'usuarios' : usuarios
     })
 
+def usuarios_procesar(request):
+    usuarios = SolicitudUsuario.objects.filter(estado_solicitud=3)
+    return render(request, 'home.html', {
+        'usuarios' : usuarios
+    })
+
 
 def aplicaciones(request):
     aplicaciones = Aplicacion.objects.all()

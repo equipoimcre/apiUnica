@@ -5,7 +5,9 @@ Pagina de inicio
 {% endblock %}
 
     
-    {% block contenido %}
-   
+{% block contenido %}
     <h1>Pagina de inicio</h1>
-    {% endblock %}
+    {%if request.user.is_authenticated%}
+        <button onclick="location.href = '{% url 'solicitar_usuario' %}' ">Solicitud de  usuario</button>
+    {%endif%}
+{% endblock %}
