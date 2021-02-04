@@ -1,6 +1,7 @@
 from django import forms
 from usuarios.models import SolicitudUsuario, Aplicacion
 
+
 class SolicitarUsuarioForm(forms.ModelForm):
 	class Meta:
 		model = SolicitudUsuario
