@@ -28,7 +28,8 @@ urlpatterns = [
     path('usuarios/', login_required(usuarios.views.home), name = 'usuarios'),
     path('usuarios_procesar/', login_required(usuarios.views.usuarios_procesar), name = 'usuarios_procesar'),
     path('usuarios/solicitar_usuario/', login_required(usuarios.views.solicitar_usuario), name = 'solicitar_usuario'),
-    path('usuarios/editar_usuario/<int:id>', login_required(usuarios.views.editar_usuario), name = 'editar_usuario'),  
+    path('usuarios/editar_usuario/<int:id>', login_required(usuarios.views.editar_usuario), name = 'editar_usuario'),
+    path('asignar_permisos/>', login_required(usuarios.views.asignar_permisos), name = 'asignar_permisos'),  
     path('aplicaciones/', login_required(usuarios.views.aplicaciones), name = 'aplicaciones'), 
     path('aplicaciones/alta_aplicacion/', login_required(usuarios.views.alta_aplicacion), name = 'alta_aplicacion'),     
 ]

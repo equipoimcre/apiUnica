@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Asignar Permisos
+{% endblock %}
+
+    
+{% block contenido %}
+   
+<h1>Pagina de Solicitud de asignacion de permisos</h1>
+    <h2>Seleccionar Usuario</h2>
+    <form action= "" method="POST" >{% csrf_token %}
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Usuario a procesar</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                {%for usuario in usuarios%}
+                    <option>{{usuario.login}}</option>
+                {% endfor %}
+                </select>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect2">Base de datos</label>
+                <select multiple class="form-control" id="exampleFormControlSelect2">
+                {%for ddbb in ddbbs%}
+                    <option>{{ddbb.nombre}}</option>
+                {% endfor %}
+                </select>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect2">Permisos para Pentajo</label>
+                <select multiple class="form-control" id="exampleFormControlSelect2">
+                {%for perfil in perfiles_pentajo%}
+                    <option>{{perfil.login}}</option>
+                {% endfor %}
+                </select>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect2">Permisos para ODK</label>
+                <select multiple class="form-control" id="exampleFormControlSelect2">
+                {%for formulario in forms_odk%}
+                    <option>{{formulario.login}}</option>
+                {% endfor %}
+                </select>
+            <button type="submit" class="save btn btn-default">Salvar</button>
+        </div>
+    </form>
+{% endblock %}

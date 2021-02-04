@@ -15,7 +15,7 @@ def home(request):
     })
 
 def usuarios_procesar(request):
-    usuarios = SolicitudUsuario.objects.filter(estado_solicitud=3)
+    usuarios = SolicitudUsuario.objects.filter(estado_solicitud=2)
     return render(request, 'home.html', {
         'usuarios' : usuarios
     })
@@ -58,6 +58,19 @@ def alta_aplicacion(request):
             instancia.save()
             return redirect('/aplicaciones')
     return render(request, "alta_aplicacion.html", {'form': form})
+
+def asignar_permisos(request):
+    usuarios = SolicitudUsuario.objects.filter(estado_solicitud=2)
+    # aqui falta el engache con la api
+    ddbbs = ''
+    perfiles_pentajo = ''
+    forms_odk = ''
+    return render(request, "asignar_permisos.html", {
+        'usuarios' : usuarios,
+        'dddds' : ddbbs,
+        'perfiles_pentajo' : perfiles_pentajo,
+        'forms_odk' : forms_odk
+        })
 
 
 
