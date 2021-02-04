@@ -9,3 +9,8 @@ admin.site.register(EstadoSolicitud)
 admin.site.register(Aplicacion)
 admin.site.register(SolicitudUsuario)
 admin.site.register(UsuarioAplicacion)
+
+
+
+
+admin.site.site_header = "Gesion de usuarios Equipo IM"

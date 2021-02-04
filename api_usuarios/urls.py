@@ -17,13 +17,17 @@ from django.contrib import admin
 from django.urls import include, path
 import api_usuarios.views # carga las vista de la pagina web base
 import usuarios.views
+from django.contrib.auth.decorators import login_required
 
 
 urlpatterns = [
-    path('', api_usuarios.views.index, name='index'), # Pagina de inicio 
-    path('usuarios/', usuarios.views.home, name = 'usuarios'),
-    path('usuarios/solicitar_usuario/', usuarios.views.solicitar_usuario, name = 'solicitar_usuario'), 
-    path('aplicaciones/', usuarios.views.aplicaciones, name = 'aplicaciones'), 
-    path('aplicaciones/alta_aplicacion/', usuarios.views.alta_aplicacion, name = 'alta_aplicacion'), 
     path('admin/', admin.site.urls), # con /admin nos abre la pagina de administracion
+    path('', api_usuarios.views.index, name='index'), # Pagina de inicio 
+    path('login_page/', api_usuarios.views.login_page, name = 'login_page'),
+    path('logout_page/', api_usuarios.views.logout_page, name = 'logout_page'),
+    path('usuarios/', login_required(usuarios.views.home), name = 'usuarios'),
+    path('usuarios/solicitar_usuario/', login_required(usuarios.views.solicitar_usuario), name = 'solicitar_usuario'), 
+    path('aplicaciones/', login_required(usuarios.views.aplicaciones), name = 'aplicaciones'), 
+    path('aplicaciones/alta_aplicacion/', login_required(usuarios.views.alta_aplicacion), name = 'alta_aplicacion'),     
 ]
+
