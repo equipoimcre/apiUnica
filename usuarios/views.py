@@ -36,7 +36,15 @@ def solicitar_usuario(request):
             instancia = form.save(commit=False)
             instancia.save()
             return redirect('/usuarios')
-    return render(request, "solicitar_usuario.html", {'form': form})
+    # aqui falta el engache con la api
+    ddbbs = ''
+    perfiles_pentajo = ''
+    forms_odk = ''
+    return render(request, "solicitar_usuario.html",  {'form': form,
+            'dddds' : ddbbs,
+            'perfiles_pentajo' : perfiles_pentajo,
+            'forms_odk' : forms_odk
+            })
 
 def editar_usuario(request, id):
     instancia = SolicitudUsuario.objects.get(id=id)
@@ -61,11 +69,12 @@ def alta_aplicacion(request):
 
 def asignar_permisos(request):
     usuarios = SolicitudUsuario.objects.filter(estado_solicitud=2)
+    print (usuarios)
     # aqui falta el engache con la api
     ddbbs = ''
     perfiles_pentajo = ''
     forms_odk = ''
-    return render(request, "asignar_permisos.html", {
+    return render(request, "asignar_permisos_2.html", {
         'usuarios' : usuarios,
         'dddds' : ddbbs,
         'perfiles_pentajo' : perfiles_pentajo,
