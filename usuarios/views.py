@@ -84,20 +84,17 @@ def asignar_permisos(request, id):
         })
 
 def resultado(request):
-    form = RespuestaForm()
+    form = RespuestaForm(request.POST)
     nombre = request.POST.get('nombre',False)
     if request.method == "POST":
-        form = RespuestaForm(request.POST)
         if form.is_valid():
             #instancia = form.save(commit=False)
             #instancia.save()
-            print('paso')
-            print(nombre)
-            HttpResponse("en pruebas")
+            return HttpResponse("en pruebas dentro")
     # aqui falta el engache con la api
     print(nombre)
-    print(form.nombre)
-    return HttpResponse("en pruebas")
+    print(form)
+    return HttpResponse("en pruebas fuera" )
 
 
 
