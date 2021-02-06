@@ -7,68 +7,14 @@ Solicitud de usuarios
     
 {% block contenido %}
    
-<h1>Pagina de Solicitud de alta de usuario para las apliciones IM</h1>
-<h2>Nuevo Usuario</h2>
+<h1>Pagina de {{ text }} para las apliciones IM</h1>
+
 
 <form action= "" method="POST" >{% csrf_token %}
     <div class="form-group">
         {{ form.as_p }}
         <button type="submit" class="save btn btn-default">Salvar</button>
-        <input type="button" class="save btn btn-default" name="Cancelar" value="Cancelar" onclick="location.href = '{% url 'usuarios'%}'">
+        <input type="button" class="save btn btn-default" name="Cancelar" value="Cancelar" onclick="location.href = '{% url 'usuarios_solicitados'%}'">
     </div>
 </form>
-
-<!--
-<form action= "" method="POST" >{% csrf_token %}
-    <div class="form-group">
-        <label for='{{ form.nombre}}'>Nombre</label>
-        <input type="text" class="form-control" id='{{ form.nombre}}' placeholder="Nombre y apellidos del solicitante">
-    </div>
-    <div class="form-group">
-        <label for='{{ form.correo}}'>Correo</label>
-        <input type="email" class="form-control" id='{{ form.correo}}' placeholder="Correo del solicitante">
-    </div>
-    <div class="form-group">
-        <label for='{{ form.login}}'>Nombre de usuario</label>
-        <input type="text" class="form-control" id='{{ form.login}}' placeholder="Login de acceso a las aplicaciones">
-    </div>
-    <div class="form-group">
-        <label for='{{ form.clave}}'>Clave</label>
-        <input type="password" class="form-control" id='{{ form.clave}}' placeholder="clave">
-    </div>
-    <div class="form-group">
-        <label for='{{ form.estado_solicitud}}'>Estado de la solicitud</label>
-        <select class="form-control" id='{{ form.estado_solicitud}}'>
-            {%for estado in form.estado_solicitud%}
-                <option>{{estado}}</option>
-            {% endfor %}
-        </select>
-    </div>
-    <div class="form-check">
-        <input type="checkbox" class="form-check-input" id='{{form.user_mysql}}'>
-        <label class="form-check-label" for='{{form.user_mysql}}'>Crear usuario de Mysql</label>
-    </div>
-        <div class="form-group">
-        <label for='{{ form.ddbb_mysql}}'>DDBB de Mysql</label>
-        <input type="text" class="form-control" id='{{ form.ddbb_mysql}}' placeholder="Base de datos a las que tiene acceso separadas por comas">
-    </div>
-    <div class="form-check">
-        <input type="checkbox" class="form-check-input" id='{{form.user_pentajo}}'>
-        <label class="form-check-label" for='{{form.user_pentajo}}'>Crear usuario de Pentajo</label>
-    </div>
-        <div class="form-group">
-        <label for='{{ form.roll_pentajo }}'>Roles de Pentajo</label>
-        <input type="text" class="form-control" id='{{ form.roll_pentajo }}' placeholder="Roles a los que tiene acceso separados por comas">
-    </div>
-    <div class="form-check">
-        <input type="checkbox" class="form-check-input" id='{{form.user_odk}}'>
-        <label class="form-check-label" for='{{form.user_odk}}'>Crear usuario de ODK</label>
-    </div>
-        <div class="form-group">
-        <label for='{{ form.form_odk}}'>Formularios de ODK</label>
-        <input type="text" class="form-control" id='{{ form.form_odk}}' placeholder="Formularios a las que tiene acceso separados por comas">
-    </div>
-    <button type="submit" class="save btn btn-default">Salvar</button>
-</form>
--->
 {% endblock %}
