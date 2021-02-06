@@ -61,22 +61,11 @@ def editar_usuario(request, id):
 
 
 def asignar_permisos(request, id):
-    print(request.user)
-    instancia = SolicitudUsuario.objects.get(id=id)
-    form = SolicitarUsuarioForm(instance=instancia)
     usuarios = SolicitudUsuario.objects.filter(id=id)
-    if request.method == "POST":
-        form = SolicitarUsuarioForm(request.POST or None, instance=instancia)
-        if form.is_valid():
-            #instancia = form.save(commit=False)
-            #instancia.save()
-            return redirect('/')
-    # aqui falta el engache con la api
     ddbbs = ['a','b',1,2,3,4,5,6,7,8]
     perfiles_pentajo = [1,2,3,4,5,6,7,8]
     forms_odk = [1,2,3,4,5,6,7,8]
     return render(request, "asignar_permisos_2.html", {
-        'form' : form,
         'usuarios' : usuarios,
         'ddbbs' : ddbbs,
         'perfiles_pentajo' : perfiles_pentajo,
@@ -84,16 +73,28 @@ def asignar_permisos(request, id):
         })
 
 def resultado(request):
-    form = RespuestaForm(request.POST)
+    
+    #guardo los datos del form
     nombre = request.POST.get('nombre',False)
+    correo = request.POST.get('correo',False)
+    login = request.POST.get('login',False)
+    clave = request.POST.get('clave',False)
+    user_mysql = request.POST.get('user_mysql',False)
+    ddbb_mysql = request.POST.getlist("ddbb_mysql")
+    user_pentajo = request.POST.get('user_pentajo',False)
+    roll_pentajo = request.POST.getlist("roll_pentajo")
+    user_odk = request.POST.get('user_odk',False)
+    form_odk = request.POST.getlist("form_odk")
+    usuario = SolicitudUsuario.objects.get(nombre=nombre)
+    print(usuario.estado_solicitud)
     if request.method == "POST":
-        if form.is_valid():
-            #instancia = form.save(commit=False)
-            #instancia.save()
-            return HttpResponse("en pruebas dentro")
-    # aqui falta el engache con la api
-    print(nombre)
-    print(form)
+        # cambiar el estado a procesado
+        usuario.estado_solicitud_id = 4
+        print(usuario.estado_solicitud)
+        usuario.save() 
+        # aqui falta el engache con la api
+        
+        return render(request, "tramitado_ok.html", {'usuario': usuario.nombre})
     return HttpResponse("en pruebas fuera" )
 
 
