@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from usuarios.models import SolicitudUsuario, Aplicacion, EstadoSolicitud, UsuarioAplicacion
+from usuarios.models import SolicitudUsuario
 from usuarios.forms import SolicitarUsuarioForm, RespuestaForm
 from django.contrib.auth import authenticate,login,logout
 
@@ -89,7 +89,7 @@ def resultado(request):
     print(usuario.estado_solicitud)
     if request.method == "POST":
         # cambiar el estado a procesado
-        usuario.estado_solicitud_id = 4
+        usuario.estado_solicitud = 4
         print(usuario.estado_solicitud)
         usuario.save() 
         # aqui falta el engache con la api

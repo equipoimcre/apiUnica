@@ -1,16 +1,11 @@
 from django.contrib import admin
-from usuarios.models import EstadoSolicitud, Aplicacion,SolicitudUsuario,UsuarioAplicacion
+from usuarios.models import SolicitudUsuario
 
 
 
 # Register your models here.
 
-admin.site.register(EstadoSolicitud)
-admin.site.register(Aplicacion)
 admin.site.register(SolicitudUsuario)
-admin.site.register(UsuarioAplicacion)
-
-
 
 
 admin.site.site_header = "Gesion de usuarios Equipo IM"

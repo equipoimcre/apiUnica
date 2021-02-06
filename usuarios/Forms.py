@@ -1,5 +1,5 @@
 from django import forms
-from usuarios.models import SolicitudUsuario, Aplicacion
+from usuarios.models import SolicitudUsuario
 
 DEMO_CHOICES =( 
     ("1", "Naveen"), 
