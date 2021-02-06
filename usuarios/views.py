@@ -74,7 +74,7 @@ def asignar_permisos(request):
     ddbbs = ''
     perfiles_pentajo = ''
     forms_odk = ''
-    return render(request, "asignar_permisos_2.html", {
+    return render(request, "asignar_permisos.html", {
         'usuarios' : usuarios,
         'dddds' : ddbbs,
         'perfiles_pentajo' : perfiles_pentajo,
