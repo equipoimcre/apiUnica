@@ -65,7 +65,7 @@ def asignar_permisos(request, id):
     ddbbs = ['a','b',1,2,3,4,5,6,7,8]
     perfiles_pentajo = [1,2,3,4,5,6,7,8]
     forms_odk = [1,2,3,4,5,6,7,8]
-    return render(request, "asignar_permisos_2.html", {
+    return render(request, "asignar_permisos.html", {
         'usuarios' : usuarios,
         'ddbbs' : ddbbs,
         'perfiles_pentajo' : perfiles_pentajo,
@@ -88,14 +88,67 @@ def resultado(request):
     usuario = SolicitudUsuario.objects.get(nombre=nombre)
     print(usuario.estado_solicitud)
     if request.method == "POST":
-        # cambiar el estado a procesado
-        usuario.estado_solicitud = 4
-        print(usuario.estado_solicitud)
-        usuario.save() 
-        # aqui falta el engache con la api
-        
-        return render(request, "tramitado_ok.html", {'usuario': usuario.nombre})
+        try:
+            # cambiar el estado a procesado
+            usuario.estado_solicitud = 4
+            print(usuario.estado_solicitud)
+            usuario.save() 
+            # aqui falta el engache con la api
+            return render(request, "tramitado_ok.html", {'usuario': usuario.nombre})
+        except Exception as e:
+            return render(request, "tramitado_mal.html", {'error': e})
+
     return HttpResponse("en pruebas fuera" )
+
+def buscar_usuario(request):
+    usuarios = SolicitudUsuario.objects.filter(estado_solicitud=4)
+    return render(request, 'buscar_usuario.html', {
+        'usuarios' : usuarios
+    })
+
+def editar_permisos(request):
+    username = request.POST.get('login',False)
+    if request.method == "POST":
+        # perdir los todos los datos
+        ddbbs = ['a','b',1,2,3,4,5,6,7,8]
+        perfiles_pentajo = [1,2,3,4,5,6,7,8]
+        forms_odk = [1,2,3,4,5,6,7,8]
+        # pedir los datos del usuario
+        username_ddbbs = [1,2,3]
+        username_perfiles_pentajo = [1,2,3]
+        username_forms_odk = [1,2,3]
+        return render(request, "editar_permisos.html", {
+        'username' : username,
+        'ddbbs' : ddbbs,
+        'perfiles_pentajo' : perfiles_pentajo,
+        'forms_odk' : forms_odk,
+        'username_ddbbs' : username_ddbbs,
+        'username_perfiles_pentajo' : username_perfiles_pentajo,
+        'username_forms_odk' : username_forms_odk
+        })
+   
+    return HttpResponse("en pruebas editar_usario 1.2 " + str(a)  )
+
+def editar_permisos2(request, login):
+    username = login
+    # perdir los todos los datos
+    ddbbs = ['a','b',1,2,3,4,5,6,7,8]
+    perfiles_pentajo = [1,2,3,4,5,6,7,8]
+    forms_odk = [1,2,3,4,5,6,7,8]
+    # pedir los datos del usuario
+    username_ddbbs = [1,2,3]
+    username_perfiles_pentajo = [1,2,3]
+    username_forms_odk = [1,2,3]
+    return render(request, "editar_permisos.html", {
+        'username' : username,
+        'ddbbs' : ddbbs,
+        'perfiles_pentajo' : perfiles_pentajo,
+        'forms_odk' : forms_odk,
+        'username_ddbbs' : username_ddbbs,
+        'username_perfiles_pentajo' : username_perfiles_pentajo,
+        'username_forms_odk' : username_forms_odk
+        })
+
 
 
 

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Asignar Permisos
+{% endblock %}
+
+    
+{% block contenido %}
+   
+<h1>Pagina de Solicitud de Edicion de permisos</h1>
+    <h2>Usuario seleccionado: {{ username }}</h2>
+<div class="container">
+    <form action= "{% url 'resultado'%}" method="POST" >{% csrf_token %}
+        {% if username_ddbbs %}
+          <div class="form-group">
+            <label for="old_ddbb_mysql">DDBB asignadas al usuario</label>
+            <select multiple class="form-control" name="old_ddbb_mysql" readonly>
+              {% for ddbb in username_ddbbs%}
+                <option>{{ ddbb}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="ddbb_mysql">Seleccionar las DDBB para asignar permisos</label>
+            <select multiple class="form-control" name="ddbb_mysql">
+              {% for ddbb in ddbbs%}
+                <option>{{ ddbb}}</option>
+              {% endfor %}
+            </select>
+          </div>
+        {% endif %}
+        {% if username_perfiles_pentajo %}
+          <div class="form-group">
+            <label for="old_roll_pentajo">Roles de pentajo asignados</label>
+            <select multiple class="form-control" name="old_roll_pentajo" readonly>
+              {% for perfil in username_perfiles_pentajo%}
+                <option>{{ perfil }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="roll_pentajo">Seleccionar los Roles de pentajo</label>
+            <select multiple class="form-control" name="roll_pentajo">
+              {% for perfil in perfiles_pentajo%}
+                <option>{{ perfil }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        {% endif %}
+        {% if username_forms_odk %}
+          <div class="form-group">
+            <label for="old_form_odk">Formularios de ODK actuales</label>
+            <select multiple class="form-control" name="old_form_odk" readonly>
+              {% for formulario in username_forms_odk%}
+                <option>{{ formulario }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="form_odk">Seleccionar los Formularios de ODK</label>
+            <select multiple class="form-control" name="form_odk">
+              {% for formulario in forms_odk%}
+                <option>{{ formulario }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        {% endif %}
+          <div class="form-group">
+            <button type="submit" class="save btn btn-default">Salvar</button>
+            <input type="button" class="save btn btn-default" name="Cancelar" value="Cancelar" onclick="location.href = '/'">
+          </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

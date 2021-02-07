@@ -9,6 +9,9 @@ from django.contrib import messages
 def index(request):
     return render(request, 'index.html')
 
+def en_costruccion(request):
+    return render(request, 'en_costruccion.html')
+
 def login_page(request):
     if request.method == 'POST':
         username =request.POST.get('username')
