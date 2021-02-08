@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}
+Buscar Usuario
+{% endblock %}
+{% block contenido %}
+<h1>Pagina de Solicitud de asignacion de permisos</h1>
+    <h2>Seleccionar Usuario</h2>
+<div class="container">
+    <form action= "{% url 'editar_permisos' %}" method="POST" >{% csrf_token %}
+        <div class="form-group">
+            <label for="login">Login:</label>
+            <input type="text" class="form-control" name="login" >
+        </div>
+        <div class="form-group">
+            <button type="submit" class="save btn btn-default">Buscar</button>
+        </div>
+    </form>
+</div>
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Usuario</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Fecha solicitid</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for usuario in usuarios%}
+                <tr>
+                    <th scope="row"><a class="nav-link" href="{% url 'editar_permisos2' usuario.login %}">{{usuario.id}}</a></th>
+                    <td>{{usuario.nombre}}</td>
+                    <td>{{usuario.login}}</td>
+                    <td>{{usuario.correo}}</td>
+                    <td>{{usuario.fecha_solcitud}}</td>
+                </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+Funciones necesarias
+
+-     ddbbs = Una funcion que debuelba las bases de datos que hay
+-    perfiles_pentajo = Una funcion que debuelba los rolls que se pueden asignas
+-    forms_odk = Una funcion que debuelba los fomularios que hay
+
+Para guardar (esto seria uno para cada aplicacion)
+Una funcion que se le pase como parmetro:
+- login : el username
+- clave : la clave
+- permisos : una lista con las DDBB a las que va a tener acceso
+Y la funcion devuelva Ok si lo ha hecho bien, para hacerlo todo en una debera comprobar si las DDBB estan el la lista y sino quitarles los permisos
+
+Para buscar (esto seria uno para cada aplicacion)
+Una funcion que se le pase como parmetro:
+- login : el username
+Y la funcion devuelva:
+- login : el username
+- clave : la clave
+- permisos : una lista con las DDBB a las que va a teniene acceso
+
+Para borrar usuario
+Una funcion que se le pase como parmetro:
+- login : el username
+Y la funcion devuelva Ok si lo ha hecho bien
+

@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Asignar Permisos
+{% endblock %}
+
+    
+{% block contenido %}
+   
+<h1>Pagina de Solicitud de asignacion de permisos</h1>
+    <h2>Seleccionar Usuario</h2>
+<div class="container">
+    <form action= "{% url 'resultado'%}" method="POST" >{% csrf_token %}
+      {% for usuario in usuarios%}
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" class="form-control"  name='nombre'  value='{{ usuario.nombre}}'>
+          </div>
+          <div class="form-group">
+            <label for="correo">Correo</label>
+            <input type="email" class="form-control" name="correo" value='{{ usuario.correo}}'>
+          </div>
+          <div class="form-group">
+            <label for="login">Login:</label>
+            <input type="text" class="form-control" name="login" value='{{ usuario.login}}'>
+          </div>
+          <div class="form-group">
+            <label for="clave">Contraseña:</label>
+            <input type="password" class="form-control" name="clave" value='{{ usuario.clave}}'>
+          </div>
+          <div class="form-check">
+            {% if usuario.user_mysql %}
+              <input class="form-check-input" type="checkbox" checked=checked name="user_mysql">
+              <label class="form-check-label" for="user_mysql">Crear usuario de Mysql</label>
+            {% else %}
+              <input class="form-check-input" type="checkbox"  name="user_mysql">
+              <label class="form-check-label" for="user_mysql">Crear usuario de Mysql</label>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="read_ddbb_mysql">DDBB solicitadas:</label>
+            <textarea class="form-control" name="read_ddbb_mysql" rows="3" readonly placeholder='{{ usuario.ddbb_mysql}}'></textarea>
+          </div>
+          <div class="form-group">
+            <label for="ddbb_mysql">Seleccionar las DDBB para asignar permisos</label>
+            <select multiple class="form-control" name="ddbb_mysql">
+              {% for ddbb in ddbbs%}
+                <option>{{ ddbb}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-check">
+            {% if usuario.user_pentajo %}
+              <input class="form-check-input" type="checkbox" checked=checked name="user_pentajo">
+              <label class="form-check-label" for="user_pentajo">Crear usuario de Pentajo</label>
+            {% else %}
+              <input class="form-check-input" type="checkbox"  name="user_pentajo">
+              <label class="form-check-label" for="user_pentajo">Crear usuario de Pentajo</label>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="read_roll_pentajo">Roles de Pentajo solicitados:</label>
+            <textarea class="form-control" name="read_roll_pentajo" rows="3" readonly placeholder='{{ usuario.roll_pentajo}}'></textarea>
+          </div>
+          <div class="form-group">
+            <label for="roll_pentajo">Seleccionar los Roles de pentajo</label>
+            <select multiple class="form-control" name="roll_pentajo">
+              {% for perfil in perfiles_pentajo%}
+                <option>{{ perfil }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-check">
+            {% if usuario.user_odk %}
+              <input class="form-check-input" type="checkbox" checked=checked name="user_odk">
+              <label class="form-check-label" for="user_odk">Crear usuario de ODK</label>
+            {% else %}
+              <input class="form-check-input" type="checkbox"  name="user_odk">
+              <label class="form-check-label" for="user_odk">Crear usuario de ODK</label>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="read_form_odk">Formularios solicitados:</label>
+            <textarea class="form-control" name="read_form_odk" rows="3" readonly placeholder='{{ usuario.form_odk}}'></textarea>
+          </div>
+          <div class="form-group">
+            <label for="form_odk">Seleccionar los Formulaios de ODK</label>
+            <select multiple class="form-control" name="form_odk">
+              {% for formulario in forms_odk%}
+                <option>{{ formulario }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="save btn btn-default">Salvar</button>
+            <input type="button" class="save btn btn-default" name="Cancelar" value="Cancelar" onclick="location.href = '/'">
+          </div>
+        </div>
+      {% endfor %}  
+    </form>
+</div>
+{% endblock %}

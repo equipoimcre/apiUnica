@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Solicitud de usuarios
+{% endblock %}
+
+    
+{% block contenido %}
+   
+<h1>Pagina de {{ text }} para las apliciones IM</h1>
+
+
+<form action= "" method="POST" >{% csrf_token %}
+    <div class="form-group">
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Salvar</button>
+        <input type="button" class="save btn btn-default" name="Cancelar" value="Cancelar" onclick="location.href = '{% url 'usuarios_solicitados'%}'">
+    </div>
+</form>
+{% endblock %}
